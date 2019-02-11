@@ -14,7 +14,7 @@ try:
 	from frappe.utils.file_manager import get_file
 except ImportError:
 	from frappe.core.doctype.file.file import download_file
-        def get_file(file_url):
+		def get_file(file_url):
 		download_file(file_url)
 		file_content = frappe.response.file_content
 		del frappe.local.response.file_content
@@ -81,10 +81,10 @@ def get_print_content(print_format, doctype, docname, is_escpos=False, is_raw=Fa
 	elif is_raw:
 		raw = content
 	else:
-		raw = get_pdf(content)	
+		raw = get_pdf(content)
 
 	#frappe.msgprint("<pre>%s</pre>" %raw)
-	
+
 	return b64encode(raw)
 
 @frappe.whitelist()
@@ -170,7 +170,7 @@ def batch_print_via_printnode(action, docs):
 
 @frappe.whitelist()
 def get_action_list(dt):
-	return frappe.get_all('Print Node Action', 
+	return frappe.get_all('Print Node Action',
 		fields=["name", "action", "printable_type", "attachment_pattern", "depends_on", "allow_inline_batch", "batch_field", "hotkey"],
 		filters={'dt': dt},
 		order_by= 'idx ASC',
